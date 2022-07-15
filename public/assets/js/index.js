@@ -38,6 +38,8 @@ const saveNote = (note) =>
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      //"Access-Control-Allow-Origin":"*",//
+      //"Access-Control-Allow-Credentials": true//
     },
     body: JSON.stringify(note),
   });
@@ -67,6 +69,7 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = () => {
+  console.log("clicked")
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
@@ -118,6 +121,7 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+  console.log(notes)
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -158,6 +162,7 @@ const renderNoteList = async (notes) => {
     noteListItems.push(createLi('No saved Notes', false));
   }
 
+  // CONSOLE LOG ERROR > UNCAUGHT IN PROMISE jsonNOTES.FOREACH is NOT A FUNCTION 161:13 - STARTER CODE THE SAME
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
