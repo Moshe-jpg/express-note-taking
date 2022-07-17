@@ -3,6 +3,8 @@ const {notes} = require("../db/db.json");
 const { v4: uuidv4 } = require("uuid");
 const { noteCreate, deleteNote } = require("../lib/notes");
 
+// These are all the routes we want the browser to run with
+
 router.get("/notes", (req, res) => {
   let savedNotes = notes;
   res.json(savedNotes);
